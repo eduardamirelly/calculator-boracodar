@@ -1,4 +1,5 @@
 import { Divide, Equals, Minus, Percent, Plus, PlusMinus, X } from 'phosphor-react';
+import { useState } from 'react';
 import { Key, KeyProps } from './components/Key';
 import './global.css';
 
@@ -146,15 +147,22 @@ const keys: KeyProps[] = [
 ]
 
 function App() {
+  const [result, setResult] = useState('...');
+  const [operations, setOperations] = useState('...');
+
+  const handleKeyClick = (keyCode: string) => {
+    console.log(keyCode)
+  }
+
   return (
     <div className="bg-calculator">
       <div className="head-calculator">
-        <div className="head-calculator-operations">1 + 1</div>
+        <div className="head-calculator-operations">{operations}</div>
         <div className="head-calculator-result">
           <span>
             <Equals size={24} color="#6B6B6B" />
           </span>
-          <span className="text-[2rem]">2</span>
+          <span className="text-[2rem]">{result}</span>
         </div>
       </div>
 
@@ -167,6 +175,7 @@ function App() {
             color={key.color}
             children={key.children}
             backgroundColor={key.backgroundColor}
+            onClick={() => handleKeyClick(key.code)}
           />
         ))}
       </div>
