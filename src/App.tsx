@@ -1,6 +1,33 @@
 import { Divide, Equals, Percent } from 'phosphor-react';
-import { Key } from './components/Key';
+import { Key, KeyProps } from './components/Key';
 import './global.css';
+
+const keys: KeyProps[] = [
+  {
+    children: '',
+    keyName: 'CE',
+    color: 'violet',
+    backgroundColor: false,
+  },
+  {
+    children: '',
+    keyName: 'C',
+    color: 'white',
+    backgroundColor: false,
+  },
+  {
+    children: <Percent size={28} />,
+    keyName: '',
+    color: 'white',
+    backgroundColor: false,
+  },
+  {
+    children: <Divide size={28} />,
+    keyName: '',
+    color: 'white',
+    backgroundColor: true,
+  },
+]
 
 function App() {
   return (
@@ -16,14 +43,15 @@ function App() {
       </div>
 
       <div className="body-calculator">
-        <Key keyName="CE" color="violet" />
-        <Key keyName="C" />
-        <Key>
-          <Percent size={28} />
-        </Key>
-        <Key backgroundColor={true}>
-          <Divide size={28} />
-        </Key>
+        {keys.map((key, index) => (
+          <Key
+            key={index}
+            keyName={key.keyName}
+            color={key.color}
+            children={key.children}
+            backgroundColor={key.backgroundColor}
+          />
+        ))}
       </div>
     </div>
   )

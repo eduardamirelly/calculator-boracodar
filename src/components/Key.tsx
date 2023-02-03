@@ -1,6 +1,6 @@
 import React from "react";
 
-interface KeyProps {
+export interface KeyProps {
   keyName?: string;
   children?: React.ReactNode;
   color?: 'violet' | 'white';
