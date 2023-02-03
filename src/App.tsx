@@ -1,4 +1,4 @@
-import { Equals } from 'phosphor-react';
+import { Divide, Equals, Percent } from 'phosphor-react';
 import { Key } from './components/Key';
 import './global.css';
 
@@ -18,8 +18,12 @@ function App() {
       <div className="body-calculator">
         <Key keyName="CE" color="violet" />
         <Key keyName="C" />
-        <Key keyName="%" />
-        <Key keyName="/" />
+        <Key>
+          <Percent size={28} />
+        </Key>
+        <Key backgroundColor={true}>
+          <Divide size={28} />
+        </Key>
       </div>
     </div>
   )
