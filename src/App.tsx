@@ -16,7 +16,7 @@ function App() {
       </div>
 
       <div className="body-calculator">
-        <Key keyName="CE" />
+        <Key keyName="CE" color="violet" />
         <Key keyName="C" />
         <Key keyName="%" />
         <Key keyName="/" />
