@@ -3,11 +3,11 @@
 @tailwind utilities;
 
 .bg-calculator {
-  @apply bg-[#2D2A37] w-[356px] h-[566px] rounded-[3rem] shadow-calculatorBg text-[#EBEBEB] px-8 pt-12 pb-8;
+  @apply bg-[#2D2A37] w-[356px] h-[566px] rounded-[3rem] shadow-calculatorShadow text-[#EBEBEB] px-8 pt-12 pb-8;
 }
 
 .head-calculator {
-  @apply flex flex-col gap-2 items-end justify-center px-[1.375rem];
+  @apply flex flex-col gap-2 items-end justify-center px-[1.375rem] mb-[1.625rem];
 }
 
 .head-calculator-operations {
@@ -16,4 +16,12 @@
 
 .head-calculator-result {
   @apply w-full flex justify-between items-center;
+}
+
+.body-calculator {
+  @apply grid grid-cols-4;
+}
+
+.body-calculator-key {
+  @apply w-16 h-16 bg-[#2D2A37] rounded-full shadow-keyShadow flex items-center justify-center text-2xl;
 }

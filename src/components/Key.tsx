@@ -5,7 +5,7 @@ interface KeyProps {
 
 export function Key({ keyName }: KeyProps) {
   return (
-    <div>
+    <div className="body-calculator-key">
       {keyName}
     </div>
   )

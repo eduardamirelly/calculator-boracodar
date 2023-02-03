@@ -1,4 +1,5 @@
 import { Equals } from 'phosphor-react';
+import { Key } from './components/Key';
 import './global.css';
 
 function App() {
@@ -12,6 +13,13 @@ function App() {
           </span>
           <span className="text-[2rem]">2</span>
         </div>
+      </div>
+
+      <div className="body-calculator">
+        <Key keyName="CE" />
+        <Key keyName="C" />
+        <Key keyName="%" />
+        <Key keyName="/" />
       </div>
     </div>
   )
