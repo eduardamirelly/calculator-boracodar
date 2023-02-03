@@ -19,7 +19,7 @@
 }
 
 .body-calculator {
-  @apply grid grid-cols-4;
+  @apply grid grid-cols-4 gap-3;
 }
 
 .body-calculator-key {
