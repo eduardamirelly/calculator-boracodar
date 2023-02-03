@@ -2,8 +2,8 @@ import './global.css';
 
 function App() {
   return (
-    <div>
-      Hello World
+    <div className="bg-[#2D2A37] w-[356px] h-[566px] rounded-[3rem]">
+
     </div>
   )
 }
