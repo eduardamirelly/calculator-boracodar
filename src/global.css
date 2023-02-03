@@ -24,4 +24,5 @@
 
 .body-calculator-key {
   @apply w-16 h-16 bg-[#2D2A37] rounded-full shadow-keyShadow flex items-center justify-center text-2xl;
+  @apply hover:bg-[#464452] cursor-pointer transition-colors ease-in-out;
 }
