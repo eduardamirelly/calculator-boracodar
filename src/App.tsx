@@ -2,8 +2,14 @@ import './global.css';
 
 function App() {
   return (
-    <div className="bg-[#2D2A37] w-[356px] h-[566px] rounded-[3rem] shadow-calculatorBg">
-
+    <div className="bg-calculator">
+      <div className="head-calculator">
+        <div className="head-calculator-operations">1 + 1</div>
+        <div className="head-calculator-result">
+          <span>=</span>
+          <span className="text-[2rem]">2</span>
+        </div>
+      </div>
     </div>
   )
 }

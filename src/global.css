@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bg-calculator {
+  @apply bg-[#2D2A37] w-[356px] h-[566px] rounded-[3rem] shadow-calculatorBg text-[#EBEBEB] px-8 pt-12 pb-8;
+}
+
+.head-calculator {
+  @apply flex flex-col gap-2 items-end justify-center px-[1.375rem];
+}
+
+.head-calculator-operations {
+  @apply ml-auto text-xl text-[#6B6B6B];
+}
+
+.head-calculator-result {
+  @apply w-full flex justify-between items-center;
+}
