@@ -1,6 +1,8 @@
 import React from "react";
 
 export interface KeyProps {
+  code: '0'| '1'| '2'| '3'| '4'| '5'| '6'| '7'| '8'| '9'|
+        'ce'| 'c'| '%'| '/'| 'x'| '-'| '+'| '='| '+-'| ',';
   keyName?: string;
   children?: React.ReactNode;
   color?: 'violet' | 'white';
