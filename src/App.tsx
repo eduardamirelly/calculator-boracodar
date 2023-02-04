@@ -151,7 +151,7 @@ function App() {
   const [operations, setOperations] = useState('...');
 
   const handleKeyClick = (keyCode: string) => {
-    console.log(keyCode)
+    console.log(keyCode);
   }
 
   return (
