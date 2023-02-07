@@ -25,7 +25,7 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
     // if(['+', '-', 'x', '/'].includes(keyCode)) {
     //   return;
     // }
-    setOperation(operation.length < 1 ? keyCode : `${operation} ${keyCode}`);
+    setOperation(operation == '...' ? keyCode : `${operation} ${keyCode}`);
   }
 
   return (
