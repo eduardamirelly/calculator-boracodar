@@ -7,19 +7,20 @@ export interface KeyProps {
   children?: React.ReactNode;
   color?: 'violet' | 'white';
   backgroundColor?: '1' | '2' | '3';
-  onClick?: () => void,
+  onKeyClick: (keyCode: string) => void,
 }
 
 export function Key({
+  code,
   keyName,
   children,
   color = 'white',
   backgroundColor = '1',
-  onClick,
+  onKeyClick,
 }: KeyProps) {
   return (
     <div
-      onClick={onClick}
+      onClick={() => onKeyClick(code)}
       className={
         `body-calculator-key
         ${color == 'violet' ? 'text-violet-500' : 'text-white-500'}
