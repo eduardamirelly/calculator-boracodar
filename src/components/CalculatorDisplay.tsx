@@ -2,7 +2,7 @@ import { Equals } from "phosphor-react";
 import { useCalculator } from "../hooks/useCalculator";
 
 export function CalculatorDisplay() {
-  const { operationsView, prevValue, currentValue, operation } = useCalculator();
+  const { operationsView, prevValue, currentValue, operation, result } = useCalculator();
 
   return (
     <div className="head-calculator">
@@ -16,7 +16,7 @@ export function CalculatorDisplay() {
           <span>
             <Equals size={24} color="#6B6B6B" />
           </span>
-          <span className="text-[2rem]">2</span>
+          <span className="text-[2rem]">{result}</span>
         </div>
       </div>
   )
