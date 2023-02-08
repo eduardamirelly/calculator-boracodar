@@ -1,4 +1,4 @@
-import { Plus } from "phosphor-react";
+import { Plus, X } from "phosphor-react";
 import { useCalculator } from "../hooks/useCalculator";
 import { Key } from "./Key";
 
@@ -15,7 +15,7 @@ export function CalculatorKeyboard() {
       <Key code="7" keyName="7" onKeyClick={handleKeyClickNumber} />
       <Key code="8" keyName="8" onKeyClick={handleKeyClickNumber}  />
       <Key code="9" keyName="9" onKeyClick={handleKeyClickNumber} />
-      {/* <Key code="x" children={<X size={28} />} backgroundColor="2" /> */}
+      <Key code="x" children={<X size={28} />} backgroundColor="2" onKeyClick={handleKeyClickOperation} />
 
       <Key code="4" keyName="4" onKeyClick={handleKeyClickNumber} />
       <Key code="5" keyName="5" onKeyClick={handleKeyClickNumber} />
