@@ -5,6 +5,7 @@ interface CalculatorContextType {
   operation: string;
   prevValue: string;
   operationsView: string;
+  result: string;
   handleKeyClickNumber: (keyCode: string) => void;
   handleKeyClickOperation: (keyCode: string) => void;
 }
@@ -15,22 +16,40 @@ interface CalculatorContextProviderProps {
   children: React.ReactNode;
 }
 
-
 export function CalculatorContextProvider({children}: CalculatorContextProviderProps) {
   const [prevValue, setPrevValue] = useState('');
   const [currentValue, setCurrentValue] = useState('');
   const [operation, setOperation] = useState('');
   const [operationsView, setOperationsView] = useState('...');
+  const [result, setResult] = useState('');
+
+  const [operationSelect, setOperationSelect] = useState(false);
 
   const handleKeyClickNumber = (keyCode: string) => {
     setOperationsView(operationsView == '...' ? keyCode : `${operationsView} ${keyCode}`);
     setPrevValue(prevValue ? prevValue : keyCode);
     setCurrentValue(operation ? currentValue ? currentValue : keyCode : '');
+    setResult(keyCode);
   }
 
   const handleKeyClickOperation = (keyCode: string) => {
-    setOperation(prevValue ? keyCode : '');
-    setOperationsView(operation == '...' ? keyCode : `${operationsView} ${keyCode}`);
+    setOperationsView(!operation ? `${operationsView} ${keyCode}` : operationsView);
+    setOperation(prevValue ? operation ? operation : keyCode : '');
+    setOperationSelect(true);
+
+    if(currentValue && prevValue) {
+      switch (operation) {
+        case '+':
+          let sumResult = handleSum(Number(prevValue), Number(currentValue));
+          setResult(sumResult);
+          setPrevValue(sumResult);
+          setCurrentValue('');
+      }
+    }
+  }
+
+  const handleSum = (a: number, b: number) => {
+    return (a + b).toString();
   }
 
   return (
@@ -39,6 +58,7 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
       operation,
       prevValue,
       operationsView,
+      result,
       handleKeyClickNumber,
       handleKeyClickOperation
     }}>
