@@ -44,6 +44,8 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
           setResult(sumResult);
           setPrevValue(sumResult);
           setCurrentValue('');
+          setOperation('');
+          setOperationsView(sumResult);
         default:
           console.log('default');
       }
