@@ -33,17 +33,19 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
   }
 
   const handleKeyClickOperation = (keyCode: string) => {
-    setOperationsView(!operation ? `${operationsView} ${keyCode}` : operationsView);
+    setOperationsView(!operation && prevValue ? `${operationsView} ${keyCode}` : operationsView);
     setOperation(prevValue ? operation ? operation : keyCode : '');
     setOperationSelect(true);
 
     if(currentValue && prevValue) {
-      switch (operation) {
+      switch (keyCode) {
         case '+':
           let sumResult = handleSum(Number(prevValue), Number(currentValue));
           setResult(sumResult);
           setPrevValue(sumResult);
           setCurrentValue('');
+        default:
+          console.log('default');
       }
     }
   }
