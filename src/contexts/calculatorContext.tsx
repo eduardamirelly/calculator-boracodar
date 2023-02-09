@@ -58,6 +58,8 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
           break;
         case 'x':
           resultOperation = handleMultiplication(Number(prevValue), Number(currentValue));
+        case '/':
+          resultOperation = handleDivision(Number(prevValue), Number(currentValue));
         default:
           console.log('default');
           break;
@@ -81,6 +83,10 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
 
   const handleMultiplication = (a: number, b: number) => {
     return (a * b).toString();
+  }
+
+  const handleDivision = (a: number, b: number) => {
+    return (a / b).toString();
   }
 
   return (
