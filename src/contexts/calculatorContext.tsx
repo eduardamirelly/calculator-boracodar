@@ -9,6 +9,7 @@ interface CalculatorContextType {
   handleKeyClickNumber: (keyCode: string) => void;
   handleKeyClickOperation: (keyCode: string) => void;
   handleClearAll: () => void;
+  handleResultOperation: () => void;
 }
 
 export const CalculatorContext = createContext<CalculatorContextType>({} as CalculatorContextType);
@@ -44,9 +45,9 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
     setOperation(prevValue ? operation ? operation : keyCode : '');
   }
 
-  const handleResultOperation = (keyCode: string) => {
+  const handleResultOperation = () => {
     if(currentValue && prevValue) {
-      switch (keyCode) {
+      switch (operation) {
         case '+':
           let sumResult = handleSum(Number(prevValue), Number(currentValue));
           setResult(sumResult);
@@ -74,6 +75,7 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
       handleKeyClickNumber,
       handleKeyClickOperation,
       handleClearAll,
+      handleResultOperation,
     }}>
       {children}
     </CalculatorContext.Provider>
