@@ -55,14 +55,28 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
           setCurrentValue('');
           setOperation('');
           setOperationsView(sumResult);
+          break;
+        case '-':
+          let subtractionResult = handleSubtraction(Number(prevValue), Number(currentValue));
+          setResult(subtractionResult);
+          setPrevValue(subtractionResult);
+          setCurrentValue('');
+          setOperation('');
+          setOperationsView(subtractionResult);
+          break;
         default:
           console.log('default');
+          break;
       }
     }
   }
 
   const handleSum = (a: number, b: number) => {
     return (a + b).toString();
+  }
+
+  const handleSubtraction = (a: number, b: number) => {
+    return (a - b).toString();
   }
 
   return (
