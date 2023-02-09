@@ -24,13 +24,11 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
   const [operationsView, setOperationsView] = useState('...');
   const [result, setResult] = useState('...');
 
-  const [operationSelect, setOperationSelect] = useState(false);
-
   const handleKeyClickNumber = (keyCode: string) => {
-    setOperationsView(operationsView == '...' ? keyCode : `${operationsView} ${keyCode}`);
-    setPrevValue(keyCode);
-    setCurrentValue(operation ? currentValue ? currentValue : keyCode : '');
     setResult(keyCode);
+    setOperationsView(operationsView == '...' ? keyCode : `${operationsView} ${keyCode}`);
+    setPrevValue(operation ? prevValue : prevValue+keyCode);
+    setCurrentValue(operation ? currentValue+keyCode : currentValue);
   }
 
   const handleClearAll = () => {
@@ -44,8 +42,9 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
   const handleKeyClickOperation = (keyCode: string) => {
     setOperationsView(!operation && prevValue ? `${operationsView} ${keyCode}` : operationsView);
     setOperation(prevValue ? operation ? operation : keyCode : '');
-    setOperationSelect(true);
+  }
 
+  const handleResultOperation = (keyCode: string) => {
     if(currentValue && prevValue) {
       switch (keyCode) {
         case '+':
