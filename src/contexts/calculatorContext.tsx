@@ -47,27 +47,27 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
 
   const handleResultOperation = () => {
     if(currentValue && prevValue) {
+      let resultOperation = '';
+
       switch (operation) {
         case '+':
-          let sumResult = handleSum(Number(prevValue), Number(currentValue));
-          setResult(sumResult);
-          setPrevValue(sumResult);
-          setCurrentValue('');
-          setOperation('');
-          setOperationsView(sumResult);
+          resultOperation = handleSum(Number(prevValue), Number(currentValue));
           break;
         case '-':
-          let subtractionResult = handleSubtraction(Number(prevValue), Number(currentValue));
-          setResult(subtractionResult);
-          setPrevValue(subtractionResult);
-          setCurrentValue('');
-          setOperation('');
-          setOperationsView(subtractionResult);
+          resultOperation = handleSubtraction(Number(prevValue), Number(currentValue));
           break;
+        case 'x':
+          resultOperation = handleMultiplication(Number(prevValue), Number(currentValue));
         default:
           console.log('default');
           break;
       }
+
+      setResult(resultOperation);
+      setPrevValue(resultOperation);
+      setOperationsView(resultOperation);
+      setCurrentValue('');
+      setOperation('');
     }
   }
 
@@ -77,6 +77,10 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
 
   const handleSubtraction = (a: number, b: number) => {
     return (a - b).toString();
+  }
+
+  const handleMultiplication = (a: number, b: number) => {
+    return (a * b).toString();
   }
 
   return (
