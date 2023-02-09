@@ -8,6 +8,7 @@ interface CalculatorContextType {
   result: string;
   handleKeyClickNumber: (keyCode: string) => void;
   handleKeyClickOperation: (keyCode: string) => void;
+  handleClearAll: () => void;
 }
 
 export const CalculatorContext = createContext<CalculatorContextType>({} as CalculatorContextType);
@@ -21,15 +22,23 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
   const [currentValue, setCurrentValue] = useState('');
   const [operation, setOperation] = useState('');
   const [operationsView, setOperationsView] = useState('...');
-  const [result, setResult] = useState('');
+  const [result, setResult] = useState('...');
 
   const [operationSelect, setOperationSelect] = useState(false);
 
   const handleKeyClickNumber = (keyCode: string) => {
     setOperationsView(operationsView == '...' ? keyCode : `${operationsView} ${keyCode}`);
-    setPrevValue(prevValue ? prevValue : keyCode);
+    setPrevValue(keyCode);
     setCurrentValue(operation ? currentValue ? currentValue : keyCode : '');
     setResult(keyCode);
+  }
+
+  const handleClearAll = () => {
+    setPrevValue('');
+    setCurrentValue('');
+    setOperation('');
+    setOperationsView('...');
+    setResult('...');
   }
 
   const handleKeyClickOperation = (keyCode: string) => {
@@ -64,7 +73,8 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
       operationsView,
       result,
       handleKeyClickNumber,
-      handleKeyClickOperation
+      handleKeyClickOperation,
+      handleClearAll,
     }}>
       {children}
     </CalculatorContext.Provider>

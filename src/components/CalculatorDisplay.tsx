@@ -7,11 +7,6 @@ export function CalculatorDisplay() {
   return (
     <div className="head-calculator">
         <div className="head-calculator-operations">{operationsView}</div>
-        <div>
-          prev: {prevValue}
-          current: {currentValue}
-          operation: {operation}
-        </div>
         <div className="head-calculator-result">
           <span>
             <Equals size={24} color="#6B6B6B" />

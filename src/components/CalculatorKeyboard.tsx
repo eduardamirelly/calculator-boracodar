@@ -3,12 +3,12 @@ import { useCalculator } from "../hooks/useCalculator";
 import { Key } from "./Key";
 
 export function CalculatorKeyboard() {
-  const { handleKeyClickNumber, handleKeyClickOperation } = useCalculator();
+  const { handleKeyClickNumber, handleKeyClickOperation, handleClearAll } = useCalculator();
 
   return (
     <div className="body-calculator">
-      {/* <Key code="ce" keyName="CE" color="violet" />
-      <Key code="c" keyName="C" />
+      <Key code="ce" keyName="CE" color="violet" onKeyClick={handleClearAll} />
+      {/* <Key code="c" keyName="C" />
       <Key code="%" children={<Percent size={28} />} />
       <Key code="/" children={<Divide size={28} />} backgroundColor="2" /> */}
 
@@ -30,7 +30,7 @@ export function CalculatorKeyboard() {
       {/* <Key code="+-" children={<PlusMinus size={28} />} backgroundColor="2" /> */}
       <Key code="0" keyName="0" onKeyClick={handleKeyClickNumber} />
       {/* <Key code="," keyName="," /> */}
-      <Key code="=" children={<Equals size={28} />} backgroundColor="3" onKeyClick={handleKeyClickOperation} />
+      {/* <Key code="=" children={<Equals size={28} />} backgroundColor="3" onKeyClick={handleKeyClickOperation} /> */}
     </div>
   )
 }
