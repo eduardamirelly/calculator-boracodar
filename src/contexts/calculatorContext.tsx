@@ -11,6 +11,7 @@ interface CalculatorContextType {
   handleClearAll: () => void;
   handleResultOperation: () => void;
   handleClearCurrentKeyPressed: () => void;
+  handleKeyClickPlusMinus: () => void;
 }
 
 export const CalculatorContext = createContext<CalculatorContextType>({} as CalculatorContextType);
@@ -65,6 +66,22 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
     setOperation(prevValue ? operation ? operation : keyCode : '');
   }
 
+  const handleKeyClickPlusMinus = () => {
+    switch (result) {
+      case currentValue:
+        let newCurrentValue = handlePlusOrMinus(Number(currentValue), Number(currentValue) < 0);
+        setCurrentValue(newCurrentValue);
+        setResult(newCurrentValue);
+        break;
+      case prevValue:
+        let newPrevValue = handlePlusOrMinus(Number(prevValue), Number(prevValue) < 0);
+        setPrevValue(newPrevValue);
+        setResult(newPrevValue);
+        break;
+      default: break;
+    }
+  }
+
   const handleResultOperation = () => {
     if(currentValue && prevValue) {
       let resultOperation = '';
@@ -109,6 +126,10 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
     return (a / b).toString();
   }
 
+  const handlePlusOrMinus = (a: number, isNegative: boolean) => {
+    return (isNegative ? a : -a).toString();
+  }
+
   return (
     <CalculatorContext.Provider value={{
       currentValue,
@@ -121,6 +142,7 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
       handleClearAll,
       handleResultOperation,
       handleClearCurrentKeyPressed,
+      handleKeyClickPlusMinus,
     }}>
       {children}
     </CalculatorContext.Provider>
