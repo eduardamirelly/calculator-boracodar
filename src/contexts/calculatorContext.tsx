@@ -10,6 +10,7 @@ interface CalculatorContextType {
   handleKeyClickOperation: (keyCode: string) => void;
   handleClearAll: () => void;
   handleResultOperation: () => void;
+  handleClearCurrentKeyPressed: () => void;
 }
 
 export const CalculatorContext = createContext<CalculatorContextType>({} as CalculatorContextType);
@@ -26,8 +27,9 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
   const [result, setResult] = useState('...');
 
   const handleKeyClickNumber = (keyCode: string) => {
-    setResult(keyCode);
-    setOperationsView(operationsView == '...' ? keyCode : `${operationsView} ${keyCode}`);
+    if(result == '...') setResult(keyCode);
+    if(result != '...') setResult(operation ? prevValue && !currentValue ? keyCode : `${result}${keyCode}` : `${result}${keyCode}`);
+    setOperationsView(operationsView == '...' ? keyCode : `${operationsView}${keyCode}`);
     setPrevValue(operation ? prevValue : prevValue+keyCode);
     setCurrentValue(operation ? currentValue+keyCode : currentValue);
   }
@@ -40,8 +42,26 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
     setResult('...');
   }
 
+  const handleClearCurrentKeyPressed = () => {
+    switch (result) {
+      case currentValue:
+        setOperationsView(operationsView.slice(0, operationsView.length - currentValue.length));
+        setCurrentValue('');
+        break;
+      case prevValue:
+        if(!operation) {
+          setOperationsView(operationsView.slice(0, operationsView.length - prevValue.length));
+          setPrevValue('');
+          setOperationsView('...');
+        }
+        break;
+      default: break;
+    }
+    setResult('...');
+  }
+
   const handleKeyClickOperation = (keyCode: string) => {
-    setOperationsView(!operation && prevValue ? `${operationsView} ${keyCode}` : operationsView);
+    setOperationsView(!operation && prevValue ? `${operationsView} ${keyCode} ` : operationsView);
     setOperation(prevValue ? operation ? operation : keyCode : '');
   }
 
@@ -100,6 +120,7 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
       handleKeyClickOperation,
       handleClearAll,
       handleResultOperation,
+      handleClearCurrentKeyPressed,
     }}>
       {children}
     </CalculatorContext.Provider>
