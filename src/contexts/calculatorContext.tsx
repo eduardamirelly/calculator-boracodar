@@ -12,6 +12,7 @@ interface CalculatorContextType {
   handleResultOperation: () => void;
   handleClearCurrentKeyPressed: () => void;
   handleKeyClickPlusMinus: () => void;
+  handleKeyClickAddDot: () => void;
 }
 
 export const CalculatorContext = createContext<CalculatorContextType>({} as CalculatorContextType);
@@ -82,6 +83,22 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
     }
   }
 
+  const handleKeyClickAddDot = () => {
+    switch (result) {
+      case currentValue:
+        setCurrentValue(`${currentValue}.`);
+        setResult(`${currentValue}.`);
+        setOperationsView(`${operationsView}.`);
+        break;
+      case prevValue:
+        setPrevValue(`${prevValue}.`);
+        setResult(`${prevValue}.`);
+        setOperationsView(`${operationsView}.`);
+        break;
+      default: break;
+    }
+  }
+
   const handleResultOperation = () => {
     if(currentValue && prevValue) {
       let resultOperation = '';
@@ -143,6 +160,7 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
       handleResultOperation,
       handleClearCurrentKeyPressed,
       handleKeyClickPlusMinus,
+      handleKeyClickAddDot,
     }}>
       {children}
     </CalculatorContext.Provider>
