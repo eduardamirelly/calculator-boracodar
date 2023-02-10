@@ -13,6 +13,7 @@ interface CalculatorContextType {
   handleClearCurrentKeyPressed: () => void;
   handleKeyClickPlusMinus: () => void;
   handleKeyClickAddDot: () => void;
+  handleKeyClickPercent: () => void;
 }
 
 export const CalculatorContext = createContext<CalculatorContextType>({} as CalculatorContextType);
@@ -99,6 +100,24 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
     }
   }
 
+  const handleKeyClickPercent = () => {
+    switch (result) {
+      case currentValue:
+        let currentValuePercent = handlePercent(Number(currentValue));
+        setCurrentValue(currentValuePercent);
+        setResult(currentValuePercent);
+        setOperationsView(`${operationsView.slice(0, operationsView.length - currentValue.length)} ${currentValuePercent}`);
+        break;
+      case prevValue:
+        let prevValuePercent = handlePercent(Number(prevValue));
+        setPrevValue(prevValuePercent);
+        setResult(prevValuePercent);
+        setOperationsView(prevValuePercent);
+        break;
+      default: break;
+    }
+  }
+
   const handleResultOperation = () => {
     if(currentValue && prevValue) {
       let resultOperation = '';
@@ -147,6 +166,10 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
     return (isNegative ? a : -a).toString();
   }
 
+  const handlePercent = (a: number) => {
+    return (a / 100).toString();
+  }
+
   return (
     <CalculatorContext.Provider value={{
       currentValue,
@@ -161,6 +184,7 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
       handleClearCurrentKeyPressed,
       handleKeyClickPlusMinus,
       handleKeyClickAddDot,
+      handleKeyClickPercent,
     }}>
       {children}
     </CalculatorContext.Provider>

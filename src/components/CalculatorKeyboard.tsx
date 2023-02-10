@@ -11,13 +11,14 @@ export function CalculatorKeyboard() {
     handleClearCurrentKeyPressed,
     handleKeyClickPlusMinus,
     handleKeyClickAddDot,
+    handleKeyClickPercent,
   } = useCalculator();
 
   return (
     <div className="body-calculator">
       <Key code="ce" keyName="CE" color="violet" onKeyClick={handleClearCurrentKeyPressed} />
       <Key code="c" keyName="C" onKeyClick={handleClearAll} />
-      <Key code="%" children={<Percent size={28} />} onKeyClick={() => {}} />
+      <Key code="%" children={<Percent size={28} />} onKeyClick={handleKeyClickPercent} />
       <Key code="/" children={<Divide size={28} />} backgroundColor="2" onKeyClick={handleKeyClickOperation} />
 
       <Key code="7" keyName="7" onKeyClick={handleKeyClickNumber} />
