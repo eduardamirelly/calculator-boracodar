@@ -1,9 +1,6 @@
 import { createContext, useState } from "react";
 
 interface CalculatorContextType {
-  currentValue: string;
-  operation: string;
-  prevValue: string;
   operationsView: string;
   result: string;
   handleKeyClickNumber: (keyCode: string) => void;
@@ -172,9 +169,6 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
 
   return (
     <CalculatorContext.Provider value={{
-      currentValue,
-      operation,
-      prevValue,
       operationsView,
       result,
       handleKeyClickNumber,
