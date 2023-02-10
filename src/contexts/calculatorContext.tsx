@@ -1,4 +1,5 @@
 import { createContext, useState } from "react";
+import operations from "../utils/operations";
 
 interface CalculatorContextType {
   operationsView: string;
@@ -68,12 +69,12 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
   const handleKeyClickPlusMinus = () => {
     switch (result) {
       case currentValue:
-        let newCurrentValue = handlePlusOrMinus(Number(currentValue), Number(currentValue) < 0);
+        let newCurrentValue = operations.handlePlusOrMinus(Number(currentValue), Number(currentValue) < 0);
         setCurrentValue(newCurrentValue);
         setResult(newCurrentValue);
         break;
       case prevValue:
-        let newPrevValue = handlePlusOrMinus(Number(prevValue), Number(prevValue) < 0);
+        let newPrevValue = operations.handlePlusOrMinus(Number(prevValue), Number(prevValue) < 0);
         setPrevValue(newPrevValue);
         setResult(newPrevValue);
         break;
@@ -100,13 +101,13 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
   const handleKeyClickPercent = () => {
     switch (result) {
       case currentValue:
-        let currentValuePercent = handlePercent(Number(currentValue));
+        let currentValuePercent = operations.handlePercent(Number(currentValue));
         setCurrentValue(currentValuePercent);
         setResult(currentValuePercent);
         setOperationsView(`${operationsView.slice(0, operationsView.length - currentValue.length)} ${currentValuePercent}`);
         break;
       case prevValue:
-        let prevValuePercent = handlePercent(Number(prevValue));
+        let prevValuePercent = operations.handlePercent(Number(prevValue));
         setPrevValue(prevValuePercent);
         setResult(prevValuePercent);
         setOperationsView(prevValuePercent);
@@ -121,15 +122,15 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
 
       switch (operation) {
         case '+':
-          resultOperation = handleSum(Number(prevValue), Number(currentValue));
+          resultOperation = operations.handleSum(Number(prevValue), Number(currentValue));
           break;
         case '-':
-          resultOperation = handleSubtraction(Number(prevValue), Number(currentValue));
+          resultOperation = operations.handleSubtraction(Number(prevValue), Number(currentValue));
           break;
         case 'x':
-          resultOperation = handleMultiplication(Number(prevValue), Number(currentValue));
+          resultOperation = operations.handleMultiplication(Number(prevValue), Number(currentValue));
         case '/':
-          resultOperation = handleDivision(Number(prevValue), Number(currentValue));
+          resultOperation = operations.handleDivision(Number(prevValue), Number(currentValue));
         default:
           console.log('default');
           break;
@@ -141,30 +142,6 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
       setCurrentValue('');
       setOperation('');
     }
-  }
-
-  const handleSum = (a: number, b: number) => {
-    return (a + b).toString();
-  }
-
-  const handleSubtraction = (a: number, b: number) => {
-    return (a - b).toString();
-  }
-
-  const handleMultiplication = (a: number, b: number) => {
-    return (a * b).toString();
-  }
-
-  const handleDivision = (a: number, b: number) => {
-    return (a / b).toString();
-  }
-
-  const handlePlusOrMinus = (a: number, isNegative: boolean) => {
-    return (isNegative ? a : -a).toString();
-  }
-
-  const handlePercent = (a: number) => {
-    return (a / 100).toString();
   }
 
   return (
