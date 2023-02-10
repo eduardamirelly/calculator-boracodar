@@ -129,10 +129,11 @@ export function CalculatorContextProvider({children}: CalculatorContextProviderP
           break;
         case 'x':
           resultOperation = operations.handleMultiplication(Number(prevValue), Number(currentValue));
+          break;
         case '/':
           resultOperation = operations.handleDivision(Number(prevValue), Number(currentValue));
+          break;
         default:
-          console.log('default');
           break;
       }
 
