@@ -1,4 +1,4 @@
-describe('Use the calculator', () => {
+describe('Use the basic calculator operations', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173')
   })
