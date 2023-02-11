@@ -1,6 +1,7 @@
 import React from "react";
 
 export interface KeyProps {
+  id: string;
   code: '0'| '1'| '2'| '3'| '4'| '5'| '6'| '7'| '8'| '9'|
         'ce'| 'c'| '%'| '/'| 'x'| '-'| '+'| '='| '+-'| '.';
   keyName?: string;
@@ -11,6 +12,7 @@ export interface KeyProps {
 }
 
 export function Key({
+  id,
   code,
   keyName,
   children,
@@ -20,6 +22,7 @@ export function Key({
 }: KeyProps) {
   return (
     <div
+      id={id}
       onClick={() => onKeyClick(code)}
       className={
         `body-calculator-key
