@@ -29,4 +29,13 @@ describe('Use the calculator', () => {
 
     cy.get('#result').should('have.text', '81');
   })
+
+  it('divide two numbers', () => {
+    cy.get('#key-3').click();
+    cy.get('#key-divide').click();
+    cy.get('#key-2').click();
+    cy.get('#key-equals').click();
+
+    cy.get('#result').should('have.text', '1.5');
+  })
 })
