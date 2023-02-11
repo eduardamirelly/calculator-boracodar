@@ -11,7 +11,7 @@ export function CalculatorDisplay() {
           <span>
             <Equals size={24} color="#6B6B6B" />
           </span>
-          <span className="text-[2rem]">{result}</span>
+          <span className="text-[2rem]" id="result">{result}</span>
         </div>
       </div>
   )
