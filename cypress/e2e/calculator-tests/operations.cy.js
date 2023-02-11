@@ -20,4 +20,13 @@ describe('Use the calculator', () => {
 
     cy.get('#result').should('have.text', '2');
   })
+
+  it('multiplication two numbers', () => {
+    cy.get('#key-9').click();
+    cy.get('#key-multiplication').click();
+    cy.get('#key-9').click();
+    cy.get('#key-equals').click();
+
+    cy.get('#result').should('have.text', '81');
+  })
 })
