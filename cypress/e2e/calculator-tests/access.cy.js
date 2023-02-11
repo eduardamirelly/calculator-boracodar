@@ -1,4 +1,4 @@
-describe('Should be possible access the localhost', () => {
+describe('Access the localhost', () => {
   beforeEach(() => {
     cy.visit('http://localhost:5173')
   })
