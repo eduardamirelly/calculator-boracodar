@@ -4,6 +4,11 @@ describe('Use the calculator', () => {
   })
 
   it('sum to numbers', () => {
+    cy.get('#key-2').click();
+    cy.get('#key-plus').click();
+    cy.get('#key-2').click();
+    cy.get('#key-equals').click();
 
+    cy.get('#result').should('have.text', '4');
   })
 })
