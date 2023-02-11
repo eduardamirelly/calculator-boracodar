@@ -16,6 +16,7 @@ Just a calculator.
 - [ ] Typescript
 - [ ] TailwindCSS
 - [ ] Context API
+- [ ] Cypress E2E
 
 ## 🔖 Layout
 
@@ -35,6 +36,11 @@ For finally run this project:
 
 ```ci
 yarn dev
+```
+
+### Run the tests E2E too (if you want)
+```ci
+yarn test
 ```
 
 ## 📄 License
